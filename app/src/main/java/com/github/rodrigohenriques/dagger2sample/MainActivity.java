@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.button_query)
     public void queryData() {
+        if (mEditTextTvShow.getText().toString().isEmpty() || mEditTextSeason.getText().toString().isEmpty())
+            return;
+
         String tvShow = mEditTextTvShow.getText().toString();
         int season = Integer.parseInt(mEditTextSeason.getText().toString());
 
