@@ -9,36 +9,46 @@
     tools:context="com.github.rodrigohenriques.dagger2sample.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <android.support.design.widget.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp">
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <EditText
-            android:id="@+id/edittext_tv_show"
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edittext_tv_show"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_tv_show"
+                android:inputType="textAutoComplete"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edittext_season"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_season"
+                android:inputType="numberSigned" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/button_query"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/hint_tv_show"
-            android:inputType="textAutoComplete"/>
-    </android.support.design.widget.TextInputLayout>
+            android:text="@string/action_query"/>
+    </LinearLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp">
-
-        <EditText
-            android:id="@+id/edittext_season"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/hint_season"
-            android:inputType="numberSigned" />
-    </android.support.design.widget.TextInputLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler"
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
