@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.EditText;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -23,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.edittext_season) EditText mEditTextSeason;
     @Bind(R.id.recyclerview) RecyclerView mRecyclerView;
 
-    BackendService mBackendService;
+    @Inject BackendService mBackendService;
+
     ProgressDialog mProgressDialog;
 
     @Override
@@ -31,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DaggerApplicationComponent.create().inject(this);
+
         ButterKnife.bind(this);
 
         setSupportActionBar(mToolbar);
-
-        mBackendService = new BackendService();
     }
 
     @OnClick(R.id.button_query)
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Throwable t) {
                 Log.e("Retrofit", t.getMessage(), t);
                 Snackbar.make(mRecyclerView, "shit happened: " + t.getMessage(), Snackbar.LENGTH_LONG).show();
+                mRecyclerView.setAdapter(null);
                 mProgressDialog.dismiss();
             }
         });
